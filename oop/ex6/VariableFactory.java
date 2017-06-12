@@ -1,4 +1,4 @@
-package oop.ex6.Variables;
+package oop.ex6;
 
 import oop.ex6.Exceptions.SyntaxException;
 

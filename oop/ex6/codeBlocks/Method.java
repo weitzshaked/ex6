@@ -1,6 +1,6 @@
 package oop.ex6.codeBlocks;
 
-import oop.ex6.Variables.Variables;
+import oop.ex6.Variables;
 
 /**
  * Method Class
