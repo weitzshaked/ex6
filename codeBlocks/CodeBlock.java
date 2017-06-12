@@ -1,6 +1,5 @@
 package oop.ex6.codeBlocks;
 
-import oop.ex6.Exceptions.SyntaxException;
 import oop.ex6.variables.VariableFactory;
 import oop.ex6.variables.Variables;
 
