@@ -1,7 +1,6 @@
 package oop.ex6.Variables;
 
-import com.sun.org.apache.xpath.internal.operations.Variable;
-import oop.ex6.codeBlocks.ConditionBlock;
+import oop.ex6.Exceptions.SyntaxException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,36 +10,27 @@ import java.util.regex.Pattern;
  */
 public class VariableFactory {
 
-    public VariableFactory(String line){
-        String type;
-        Pattern declareVariable = Pattern.compile("\\s*(final\\s+)?(\\w*\\s+)(\\D\\w*(\\s*=\\s*\\w+)?\\s*,)*" +
-                "(\\s*\\D\\w*(\\s*=\\s*\\w+)?\\s*;\\s*)");
-        Matcher m = declareVariable.matcher(line);
-        if(m.matches()){
-            type = m.group(1);
-            if(type.equals("final")){
-                type = m.group(2);
-            }
-            switch (type){
+    public static Variables variableFactory(String type, boolean isFinal, String nameAndVal) throws SyntaxException {
+        Pattern pattern = Pattern.compile("/s*(/w+)/s*=*/s*(/w+)*");
+        Matcher matcher = pattern.matcher(nameAndVal);
+        String val;
+        if(matcher.groupCount()>1) {
+            val = matcher.group(2);
+            switch (type) {
                 case "int":
-                    break;
+                    return new Variables<Integer>(type, Integer.parseInt(val),matcher.group(1),isFinal);
                 case "String":
-                    break;
+                    return new Variables<String>(type, val,matcher.group(1),isFinal);
                 case "double":
-                    break;
+                    return new Variables<Double>(type, Double.parseDouble(val),matcher.group(1),isFinal);
                 case "boolean":
                     break;
                 default:
                     break;
             }
         }
-        else {
             //todo throw syntex exception
-        }
-
+            throw new SyntaxException("");
     }
 
-    public static void main(String[] args) {
-        VariableFactory f = new VariableFactory("final int ab12=3, aa=  6;");
-    }
 }

@@ -9,7 +9,7 @@ public class Variables<T> {
     private String name, type;
     private boolean isFinal;
 
-    public Variables(T data, String name, String type, boolean isFinal){
+    public Variables(String type, T data, String name, boolean isFinal){
         this.data = data;
         this.name = name;
         this.type = type;
