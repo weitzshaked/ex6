@@ -1,4 +1,4 @@
-package oop.ex6.Variables;
+package oop.ex6.variables;
 
 import oop.ex6.Exceptions.LogicalException;
 import oop.ex6.Exceptions.SyntaxException;
