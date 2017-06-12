@@ -100,7 +100,8 @@ public class CodeBlock {
                 inerVariables.add(VariableFactory.variableFactory(type, isFinal, matcher.group(i)));
                 i++;
             }
-            catch (SyntaxException e){
+            catch (Exception e){
+
             }
         }
     }

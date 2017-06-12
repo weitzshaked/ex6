@@ -1,5 +1,6 @@
 package oop.ex6.Variables;
 
+import oop.ex6.Exceptions.LogicalException;
 import oop.ex6.Exceptions.SyntaxException;
 
 import java.util.regex.Matcher;
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
  */
 public class VariableFactory {
 
-    public static Variables variableFactory(String type, boolean isFinal, String nameAndVal) throws SyntaxException {
+    public static Variables variableFactory(String type, boolean isFinal, String nameAndVal) throws Exception {
         Pattern pattern = Pattern.compile("/s*(/w+)/s*=*/s*(/w+)*");
         Matcher matcher = pattern.matcher(nameAndVal);
         String val;
@@ -24,9 +25,16 @@ public class VariableFactory {
                 case "double":
                     return new Variables<Double>(type, Double.parseDouble(val),matcher.group(1),isFinal);
                 case "boolean":
-                    break;
+                    return new Variables<Boolean>(type,Boolean.getBoolean(val),matcher.group(1),isFinal);
+                case "char":
+                    if(val.length()==1) {
+                        return new Variables<Character>(type, val.charAt(0), matcher.group(1), isFinal);
+                    }
+                    else {
+                        throw new LogicalException("bad value");
+                    }
                 default:
-                    break;
+                    throw new LogicalException("no such variable");
             }
 
         }
