@@ -28,6 +28,7 @@ public class VariableFactory {
                 default:
                     break;
             }
+
         }
             //todo throw syntex exception
             throw new SyntaxException("");
